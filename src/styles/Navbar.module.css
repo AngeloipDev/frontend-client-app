@@ -1,0 +1,53 @@
+.navbarContainer {
+  box-shadow: 5px 5px 5px rgb(179, 179, 179);
+  height: 75px;
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  z-index: 1;
+}
+
+.subNavbarContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: var(--padding-left-container);
+  padding-right: var(--padding-right-container);
+  margin: auto;
+  max-width: var(--max-width-container);
+  gap: 20px;
+}
+
+.logo {
+  max-width: 180px;
+}
+.logo img {
+  width: 100%;
+  min-width: 100px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+}
+
+.options ul {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+.options ul li {
+  cursor: pointer;
+}
+
+.loginBtn {
+  outline: none;
+  border: none;
+  background-color: #0085ff;
+  padding: 8px 10px;
+  color: #fff;
+  border-radius: 5px;
+}
