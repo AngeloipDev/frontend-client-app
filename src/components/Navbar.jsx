@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
+import { UserDropdown } from "./UserDropdown";
 
 export const Navbar = () => {
   return (
@@ -12,11 +13,12 @@ export const Navbar = () => {
         <div className={styles.searchProductBox}>Buscador</div>
 
         <div className={styles.options}>
-          <ul>
+          <ul className={styles.ul}>
             <li>
-              <Link to="/login" className={styles.loginBtn}>
+              {/*  <Link to="/login" className={styles.loginBtn}>
                 Iniciar Sesión
-              </Link>
+              </Link> */}
+              <UserDropdown />
             </li>
           </ul>
         </div>

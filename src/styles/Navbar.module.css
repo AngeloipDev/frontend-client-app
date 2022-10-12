@@ -32,14 +32,14 @@
   align-items: center;
 }
 
-.options ul {
+.options .ul {
   display: flex;
   align-items: center;
   gap: 15px;
   margin: 0;
   padding: 0;
 }
-.options ul li {
+.options .ul li {
   cursor: pointer;
 }
 
