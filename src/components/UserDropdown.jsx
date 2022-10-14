@@ -1,4 +1,3 @@
-import user from "../img/user.jpg";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineSetting, AiOutlineMail } from "react-icons/ai";
@@ -7,14 +6,31 @@ import { BiLogOut } from "react-icons/bi";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/UserDropdown.module.css";
+import axios from "axios";
+import { Toast } from "../helpers/toast";
+import { useAuth } from "../context/AuthContext";
 
 export const UserDropdown = () => {
   const ref = useRef();
   const [activeDrop, setActiveDrop] = useState(false);
+  const { dispatch, user } = useAuth();
 
   const classMenu = activeDrop
     ? `${styles.menu} ${styles.active}`
     : styles.menu;
+
+  const logOut = async () => {
+    await axios
+      .get("http://localhost:5000/api/user/auth/signout", {
+        withCredentials: true
+      })
+      .then((res) => {
+        localStorage.removeItem("_appSigning");
+        dispatch({ type: "SIGNOUT" });
+        Toast("success", res.data.msg);
+      })
+      .catch((err) => Toast("error", err.response.data.msg));
+  };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -23,7 +39,11 @@ export const UserDropdown = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-  }, [ref]);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activeDrop]);
 
   return (
     <div ref={ref} className={styles.action}>
@@ -31,11 +51,11 @@ export const UserDropdown = () => {
         className={styles.profile}
         onClick={() => setActiveDrop(!activeDrop)}
       >
-        <img src={user} alt="" />
+        <img src={user.avatar?.url} alt="" />
       </div>
       <div className={classMenu}>
         <h3>
-          Someone Famous
+          {user.name}
           <br />
           <span>Website Designer</span>
         </h3>
@@ -60,7 +80,7 @@ export const UserDropdown = () => {
             <FiHelpCircle className={styles.icon} />
             <Link>Help</Link>
           </li>
-          <li>
+          <li onClick={logOut}>
             <BiLogOut className={styles.icon} />
             <Link>Logout</Link>
           </li>

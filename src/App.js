@@ -4,10 +4,12 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { ResetPassword } from "./pages/ResetPassword";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
+      <ToastContainer pauseOnFocusLoss={false} />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

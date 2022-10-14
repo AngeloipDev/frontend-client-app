@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import styles from "../styles/Navbar.module.css";
 import { UserDropdown } from "./UserDropdown";
 
 export const Navbar = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <nav className={styles.navbarContainer}>
       <div className={styles.subNavbarContainer}>
@@ -15,10 +17,13 @@ export const Navbar = () => {
         <div className={styles.options}>
           <ul className={styles.ul}>
             <li>
-              {/*  <Link to="/login" className={styles.loginBtn}>
-                Iniciar Sesión
-              </Link> */}
-              <UserDropdown />
+              {isLoggedIn ? (
+                <UserDropdown />
+              ) : (
+                <Link to="/login" className={styles.loginBtn}>
+                  Iniciar Sesión
+                </Link>
+              )}
             </li>
           </ul>
         </div>

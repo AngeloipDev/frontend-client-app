@@ -27,8 +27,8 @@ export const ForgotPassword = () => {
         <h2 className={styles.title}>Recuperar Contraseña</h2>
         <form ref={ref} className={styles.formulario} onSubmit={handleSubmit}>
           <Input
-            type="email"
-            text="Email"
+            type="text"
+            text="Correo electrónico"
             name="email"
             onChange={handleChange}
           />

@@ -8,7 +8,8 @@ export const Input = ({
   value,
   onClick,
   icon,
-  text
+  text,
+  disabled
 }) => {
   return (
     <div className={styles.cont_input}>
@@ -21,6 +22,7 @@ export const Input = ({
         autoComplete="off"
         placeholder=" "
         className={styles.form__input}
+        disabled={disabled}
       />
       <span className={styles.icon} onClick={onClick}>
         {icon}
